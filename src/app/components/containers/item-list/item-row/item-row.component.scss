@@ -1,0 +1,91 @@
+$grey: #999;
+
+$ilRowHeight: 100px;
+
+$itemNameFontSize: 21px;
+
+$editBtn-size: 21px;
+$editBtn-color: $grey;
+$editBtnContainer-paddingLR: auto;
+
+$remBtn-color: orangered;
+
+$footerColor: $grey;
+$footerFontSize: 25px;
+$footerPadding: 10px 5px;
+
+
+strong {
+  font-weight: 700;
+}
+
+
+.test-borders * {
+  border: solid orange;
+}
+
+.ilRow {
+  min-height: $ilRowHeight;
+  background-color: white;
+  padding: 0px;
+}
+
+.itemRow {
+  padding-top: 10px;
+
+  color: #333;
+  border-bottom: 1px solid lightgrey;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contentRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.itemName {
+  font-style: italic;
+  color: $grey;
+  padding-left: 10px;
+  font-size: $itemNameFontSize;
+}
+
+.editBtnContainer {
+  display: flex;
+  align-items: center;
+
+  text-align: center;
+  padding-left: $editBtnContainer-paddingLR;
+  padding-right: $editBtnContainer-paddingLR;
+}
+
+.editBtn {
+  color: $editBtn-color;
+  padding: $editBtn-size/2;
+  font-size: $editBtn-size;
+  cursor: pointer;
+}
+
+.remBtn{
+  color: $remBtn-color;
+  padding: $editBtn-size/2;
+  font-size: $editBtn-size;
+  cursor: pointer;
+}
+
+.qty {
+  // font-style: italic;
+  color: $footerColor;
+  font-size: $footerFontSize;
+  padding: $footerPadding;
+}
+
+.fPrice {
+  color: $footerColor;
+  font-size: $footerFontSize;
+  padding: $footerPadding;
+}

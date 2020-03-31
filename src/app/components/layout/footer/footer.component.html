@@ -1,0 +1,21 @@
+<div class="footer">
+  <div class="container-fluid">
+    <div class="row bodyRow">
+      <div class="col-md-12">
+        <div
+          class="showHideBtn"
+          (click)="showHideBtn_click($event)"
+        >
+          <fa-icon
+            [icon]="faChevronUp"
+            *ngIf="hidden"
+          ></fa-icon>
+          <fa-icon
+            [icon]="faChevronDown"
+            *ngIf="!hidden"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

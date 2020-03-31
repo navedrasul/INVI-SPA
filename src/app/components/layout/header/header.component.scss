@@ -1,0 +1,26 @@
+$iconBtn-size: 30px;
+$textBtn-size: 15px;
+
+$removeBtn-color: white;
+
+$raBtn-color: orangered;
+
+$backBtn-color: grey;
+
+.removeBtn {
+  color: $removeBtn-color;
+  margin: -$iconBtn-size/4 0;
+  font-size: $iconBtn-size;
+  cursor: pointer;
+}
+
+.raBtn {
+  color: $raBtn-color;
+  font-size: $textBtn-size;
+  margin-right: 10px;
+}
+
+.backBtn {
+  color: $backBtn-color;
+  font-size: $textBtn-size;
+}

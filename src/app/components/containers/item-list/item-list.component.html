@@ -1,0 +1,18 @@
+<div class="ilContainer">
+  <app-item-row
+    *ngFor="let item of items"
+    [item]="item"
+  ></app-item-row>
+
+  <!-- <div
+    class="ilRow itemRow"
+    *ngFor="let i of [1,2,3,4,5]"
+  >{{i}}</div> -->
+
+  <div class="ilRow addRow">
+    <!-- <div> -->
+    <fa-icon [icon]="faPlus"></fa-icon>
+    <!-- </div> -->
+  </div>
+  <div class="footerGapRow"></div>
+</div>

@@ -1,0 +1,43 @@
+$ilRowHeight: 100px;
+
+$addRowBg: var(--bg-blue-light);
+$addRowTextColor: #fff;
+
+.ilContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+// Temporary dev code
+// .ilContainer * {
+//   border: solid orange;
+// }
+
+.ilRow {
+  height: $ilRowHeight;
+  background-color: white;
+}
+
+.itemRow {
+  color: #333;
+  border-bottom: 1px solid lightgrey;
+}
+
+.addRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-basis: content;
+
+  font-size: 25px;
+  background-color: $addRowBg;
+  color: $addRowTextColor;
+
+  cursor: pointer;
+}
+
+.footerGapRow {
+  height: var(--hidden-footer-height);
+}

@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --body-bg: #ccd;
+
+  --bg-blue: #048;
+  --bg-blue-light: #5ad;
+  --bg-green: #064;
+
+  --hidden-footer-height: 50px;
+}
+
+body {
+  background-color: var(--body-bg);
+}

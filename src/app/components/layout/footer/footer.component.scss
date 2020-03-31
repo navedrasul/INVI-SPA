@@ -1,0 +1,41 @@
+$footerHeight: var(--hidden-footer-height);
+$border: 2px solid var(--bg-blue);
+$showHideBtnRadius: 25px;
+$showHideBtnHeight: 45px;
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: $footerHeight;
+  background-color: #fff0;
+  // text-align: center;
+}
+
+.bodyRow {
+  height: $footerHeight;
+  // border-top: $border;
+  background-color: var(--bg-blue);
+}
+
+.showHideBtn {
+  position: relative;
+  top: -$showHideBtnHeight;
+  width: $showHideBtnRadius*2;
+  height: $showHideBtnHeight;
+
+  font-size: $showHideBtnRadius;
+  text-align: center;
+
+  border-right: 2px solid var(--bg-blue);
+  border-left: 2px solid var(--bg-blue);
+  border-top-right-radius: $showHideBtnRadius;
+  border-top-left-radius: $showHideBtnRadius;
+
+  color: white;
+  background-color: var(--bg-blue);
+  border-top: 2px solid var(--bg-blue);
+
+  cursor: pointer;
+}

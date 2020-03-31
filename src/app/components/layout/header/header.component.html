@@ -1,0 +1,32 @@
+<nav
+  class="navbar sticky-top navbar-dark"
+  style="background-color: var(--bg-blue);"
+>
+  <a
+    class="navbar-brand"
+    href="#"
+  >I N V I</a>
+  <form class="form-inline ml-auto">
+    <a
+      class="removeBtn"
+      (click)="enableRemoveMode()"
+      *ngIf="!removeMode"
+    >
+      <fa-icon [icon]="faMinusCircle"></fa-icon>
+    </a>
+    <a
+      class="btn btn-sm btn-light raBtn"
+      (click)="removeAll()"
+      *ngIf="removeMode"
+    >
+      REMOVE ALL
+    </a>
+    <a
+      class="btn btn-sm btn-light backBtn"
+      (click)="disableRemoveMode()"
+      *ngIf="removeMode"
+    >
+      BACK
+    </a>
+  </form>
+</nav>
