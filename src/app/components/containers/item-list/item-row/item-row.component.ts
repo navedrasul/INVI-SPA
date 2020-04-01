@@ -16,7 +16,7 @@ export class ItemRowComponent implements OnInit {
   item: Item = new Item();
   // item: Item;
 
-  removeMode = true;
+  removeMode = false;
 
   constructor() {
   }

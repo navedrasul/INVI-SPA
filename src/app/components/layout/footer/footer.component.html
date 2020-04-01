@@ -1,7 +1,13 @@
-<div class="footer">
+<div
+  #footer
+  class="footer"
+>
   <div class="container-fluid">
-    <div class="row bodyRow">
-      <div class="col-md-12">
+    <div class="row">
+      <div
+        class="col-md-12"
+        style="height: 0px;"
+      >
         <div
           class="showHideBtn"
           (click)="showHideBtn_click($event)"
@@ -14,6 +20,77 @@
             [icon]="faChevronDown"
             *ngIf="!hidden"
           ></fa-icon>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 bodyRow">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 row-1">
+              <span>Items: <strong class="row-1-value">{{itemCount}}</strong></span>
+              <span>Total: $<strong class="row-1-value">{{total}}</strong></span>
+            </div>
+          </div>
+          <div
+            #row2Cntnr
+            class="row"
+          >
+            <div class="col-md-6 row-2">
+              <div class="row-2-form-group">
+                <label for="discount">Discount:&nbsp;-$</label>
+                <input
+                  type="text"
+                  #lblDiscount
+                  class="form-control"
+                  [(ngModel)]="discount"
+                  (ngModelChange)="discount_change()"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            #row3Cntnr
+            class="row"
+          >
+            <div class="col-md-12 row-3">
+              <span>Total: $<strong class="row-1-value">{{totalWithDiscount}}</strong></span>
+            </div>
+          </div>
+          <div #row4Cntnr class="row">
+            <div class="col-md-12 separator_line"></div>
+          </div>
+          <div #row5Cntnr class="row">
+            <div class="col-md-12 row-4">
+              <button
+                type="button"
+                class="btn btn-light row-4-btn"
+                (click)="print()"
+              >
+                <fa-icon [icon]="faPrint"></fa-icon>
+                <br>
+                PRINT
+              </button>
+              <button
+                type="button"
+                class="btn btn-light row-4-btn"
+                (click)="download()"
+              >
+                <fa-icon [icon]="faDownload"></fa-icon>
+                <br>
+                DOWNLOAD
+              </button>
+              <button
+                type="button"
+                class="btn btn-light row-4-btn"
+                (click)="share()"
+              >
+                <fa-icon [icon]="faShare"></fa-icon>
+                <br>
+                SHARE
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

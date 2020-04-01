@@ -1,5 +1,6 @@
 $iconBtn-size: 30px;
 $textBtn-size: 15px;
+$textBtn-weight: 500;
 
 $removeBtn-color: white;
 
@@ -17,10 +18,12 @@ $backBtn-color: grey;
 .raBtn {
   color: $raBtn-color;
   font-size: $textBtn-size;
+  font-weight: $textBtn-weight;
   margin-right: 10px;
 }
 
 .backBtn {
   color: $backBtn-color;
   font-size: $textBtn-size;
+  font-weight: $textBtn-weight;
 }
