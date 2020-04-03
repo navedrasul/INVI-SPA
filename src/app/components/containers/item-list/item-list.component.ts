@@ -36,10 +36,6 @@ export class ItemListComponent implements OnInit {
     };
 
     this.dataSvc.itemsChange$.subscribe(dataSvcObserver);
-
-    // Start: Debugging Test Code.
-    this.openAddEditItemModal();
-    // End: Debugging Test Code.
   }
 
   addItem() {

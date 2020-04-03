@@ -51,12 +51,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-sm-12 totalBeforeDiscount text-right">
+        <div class="col-md-12 col-sm-12 totalBeforeDiscount text-right">
           Total Before Discount: $<strong>{{totalBeforeDiscount}}</strong>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 offset-6 col-sm-12 form-group">
+        <div class="col-md-6 offset-md-6 col-sm-12 form-group">
           <label class="control-label">Discount</label>
           <input
             type="text"
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-sm-12 total text-right">
+        <div class="col-md-12 col-sm-12 total text-right">
           Total: $<strong>{{total}}</strong>
         </div>
       </div>
@@ -79,10 +79,10 @@
     type="button"
     class="btn btn-dark save-btn"
     (click)="saveAndClose()"
-  >Save</button>
+  >SAVE</button>
   <button
     type="button"
     class="btn btn-secondary"
     (click)="modalRef.hide()"
-  >Cancel</button>
+  >CANCEL</button>
 </div>

@@ -1,6 +1,8 @@
 $darkText-color: #66a;
 $labelText-size: 23px;
 
+$textBtn-letter-spacing: 3px;
+
 .strong {
   font-weight: 500;
 }
@@ -32,6 +34,10 @@ $labelText-size: 23px;
 
 .total {
   font-size: $labelText-size;
+}
+
+.btn {
+  letter-spacing: 3px;
 }
 
 .save-btn {
