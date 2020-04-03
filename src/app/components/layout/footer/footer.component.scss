@@ -14,11 +14,9 @@ $noramlText-color: #ddf;
 $dimText-color: #aae;
 $darkText-color: #66a;
 
-
 strong {
   font-weight: 600;
 }
-
 
 .test-borders {
   border: solid orange;
@@ -27,7 +25,6 @@ strong {
 .test-borders * {
   border: solid orange;
 }
-
 
 .blank-space {
   width: 100%;
@@ -40,7 +37,6 @@ strong {
   height: 1px;
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from($dimText-color), to(#fff0));
 }
-
 
 .footer {
   position: fixed;

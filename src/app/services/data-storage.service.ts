@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../models/Item';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,13 @@ export class DataStorageService {
 
   private discountKey: 'discount';
 
+  private itemsChangeSource = new Subject<Item[]>();
+  itemsChange$ = this.itemsChangeSource.asObservable();
+
   constructor() {
     this.updateItemsLastId();
   }
+
 
   // Items methods
 
@@ -41,6 +46,9 @@ export class DataStorageService {
     try {
       itemsStr = JSON.stringify(items);
       localStorage.setItem(this.itemsKey, itemsStr);
+
+      // Notify the change.
+      this.itemsChangeSource.next(items);
     } catch (err) {
       console.error('Error saving items to the localStorage: ', err);
     }
@@ -67,8 +75,30 @@ export class DataStorageService {
     this.Items = items;
   }
 
+  public getAllItems() {
+    return this.Items;
+  }
+
   public getItem(id: number) {
     return this.Items.find(item => item.id === id);
+  }
+
+  public updateItem(item: Item) {
+    // Flag to avoid storing changes when item with the given id is not found.
+    let itemUpdated = false;
+
+    const updatedItems = this.Items.map(i => {
+      if (i.id === item.id) {
+        return item;
+        itemUpdated = true;
+      } else {
+        return i;
+      }
+    });
+
+    if (itemUpdated) {
+      this.Items = updatedItems;
+    }
   }
 
 

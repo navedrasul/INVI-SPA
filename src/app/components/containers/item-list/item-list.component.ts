@@ -3,6 +3,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Item } from 'src/app/models/Item';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { AddEditItemComponent } from '../../shared/add-edit-item/add-edit-item.component';
+import { DataStorageService } from 'src/app/services/data-storage.service';
 
 @Component({
   selector: 'app-item-list',
@@ -17,21 +18,28 @@ export class ItemListComponent implements OnInit {
   addEditModalRef: BsModalRef;
 
   constructor(
+    private dataSvc: DataStorageService,
     private modalSvc: BsModalService
   ) {
-    // Start: Testing code
-    for (let i = 0; i < 5; i++) {
-      this.items[i] = new Item({
-        name: 'This item name is intentionally too long to test the multi-row item name that could extend around three lines of text',
-        quantity: i + 1,
-        unit: '',
-        price: 13.35 * (2 * i + 1)
-      });
-    }
-    // End: Testing code
+    this.items = dataSvc.getAllItems();
   }
 
   ngOnInit(): void {
+    const dataSvcObserver = {
+      next: res => {
+        this.items = res;
+      },
+      error: err => {
+        console.error('Error retrieving updated items: ', err);
+       },
+      finally: () => { }
+    };
+
+    this.dataSvc.itemsChange$.subscribe(dataSvcObserver);
+
+    // Start: Debugging Test Code.
+    this.openAddEditItemModal();
+    // End: Debugging Test Code.
   }
 
   addItem() {

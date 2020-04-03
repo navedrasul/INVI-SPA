@@ -12,18 +12,34 @@ export class AddEditItemComponent implements OnInit {
 
   id: number;
   item: Item;
+  totalBeforeDiscount: number;
+  total: number;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public modalRef: BsModalRef,
     private dataSvc: DataStorageService
   ) { }
 
   ngOnInit(): void {
     this.item = this.dataSvc.getItem(this.id) || new Item();
+    this.recalcTotals();
+  }
+
+  recalcTotals() {
+    this.totalBeforeDiscount = this.item.price * this.item.quantity;
+    this.total = this.totalBeforeDiscount - this.item.discount;
   }
 
   saveAndClose() {
     console.log('Saving changes...');
+
+    if (this.item.id) {
+      this.dataSvc.updateItem(this.item);
+    } else {
+      this.dataSvc.addItem(this.item);
+    }
+
+    this.modalRef.hide();
   }
 
 }
