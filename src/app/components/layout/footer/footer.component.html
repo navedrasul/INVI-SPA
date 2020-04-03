@@ -1,4 +1,8 @@
 <div
+  class="blank-space"
+  [ngStyle]="{'height.px': blankSpaceHeight}"
+><span></span></div>
+<div
   #footer
   class="footer"
 >
@@ -24,12 +28,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 bodyRow">
+      <div
+        #footerBody
+        class="col-md-12 bodyRow"
+      >
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 row-1">
               <span>Items: <strong class="row-1-value">{{itemCount}}</strong></span>
-              <span>Total: $<strong class="row-1-value">{{total}}</strong></span>
+              <span class="text-right">Total: $<strong class="row-1-value">{{total}}</strong></span>
             </div>
           </div>
           <div
@@ -50,17 +57,29 @@
             </div>
           </div>
           <div
+            #row6Cntnr
+            class="row"
+          >
+            <div class="col-md-12 separator_line"></div>
+          </div>
+          <div
             #row3Cntnr
             class="row"
           >
             <div class="col-md-12 row-3">
-              <span>Total: $<strong class="row-1-value">{{totalWithDiscount}}</strong></span>
+              <span class="text-right">Grand Total: $<strong class="row-1-value">{{totalWithDiscount}}</strong></span>
             </div>
           </div>
-          <div #row4Cntnr class="row">
+          <div
+            #row4Cntnr
+            class="row"
+          >
             <div class="col-md-12 separator_line"></div>
           </div>
-          <div #row5Cntnr class="row">
+          <div
+            #row5Cntnr
+            class="row"
+          >
             <div class="col-md-12 row-4">
               <button
                 type="button"

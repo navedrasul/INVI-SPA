@@ -1,7 +1,8 @@
-import { InviMath } from '../utils/Math';
+import { InviMath } from '../utils/invi-math';
 
 export class Item {
 
+  id = 0;
   name = '';
   quantity = 0;
   unit = '';
