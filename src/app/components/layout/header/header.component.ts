@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   faMinusCircle = faMinusCircle;
 
-  removeMode = true;
+  removeMode = false;
 
   constructor() { }
 

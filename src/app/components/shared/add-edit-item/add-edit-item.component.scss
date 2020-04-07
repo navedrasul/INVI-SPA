@@ -1,0 +1,45 @@
+$darkText-color: #66a;
+$labelText-size: 23px;
+
+$textBtn-letter-spacing: 3px;
+
+.strong {
+  font-weight: 500;
+}
+
+.modal-header {
+  background-color: var(--bg-blue);
+  color: white;
+}
+
+.close span {
+  color: white;
+}
+
+.modal-body {
+  color: $darkText-color;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.numeric-control {
+  text-align: right;
+}
+
+.totalBeforeDiscount {
+}
+
+.total {
+  font-size: $labelText-size;
+}
+
+.btn {
+  letter-spacing: 3px;
+}
+
+.save-btn {
+  background-color: var(--bg-blue);
+}
