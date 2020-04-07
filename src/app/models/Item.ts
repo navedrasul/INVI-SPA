@@ -17,4 +17,8 @@ export class Item {
     this.discount = InviMath.round(this.discount, 2);
   }
 
+  public Total(): number {
+    return (this.price * this.quantity) - this.discount;
+  }
+
 }

@@ -34,6 +34,9 @@ export class DataStorageService {
     let items: Item[];
     try {
       items = JSON.parse(localStorage.getItem(this.itemsKey));
+
+      // Convert from Object[] to Item[].
+      items = items.map(i => new Item(i));
     } catch (err) {
       console.error('Error getting items from the localStorage: ', err);
     }
