@@ -1,5 +1,12 @@
+$logo-letter-spacing: 5px;
+$logo-size: 25px;
+$logo-weight: 500;
+$logo-shadow: 0px 0px 5px #fff;
+
 $iconBtn-size: 30px;
 $textBtn-size: 15px;
+$textBtn-weight: 500;
+$textBtn-letter-spacing: 2px;
 
 $removeBtn-color: white;
 
@@ -7,11 +14,30 @@ $raBtn-color: orangered;
 
 $backBtn-color: grey;
 
+.inviLogo {
+  font-size: $logo-size;
+  font-weight: $logo-weight;
+  letter-spacing: $logo-letter-spacing;
+
+  padding: 0px 0px;
+
+  text-shadow: $logo-shadow;
+}
+
+.navbar-brand {
+  padding: 0px 0px;
+}
+
 .removeBtn {
   color: $removeBtn-color;
   margin: -$iconBtn-size/4 0;
   font-size: $iconBtn-size;
   cursor: pointer;
+}
+
+.btn {
+  font-weight: $textBtn-weight;
+  letter-spacing: $textBtn-letter-spacing;
 }
 
 .raBtn {

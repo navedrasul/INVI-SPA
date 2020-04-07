@@ -1,29 +1,78 @@
-$footerHeight: var(--hidden-footer-height);
+$footer-height: 200px;
+// $hidden-footer-height: var(--hidden-footer-height);
+// $hidden-footer-height: 37px;
+// $hidden-footer-height: $footerHeight;
+// $footerPosBtm: $hidden-footer-height - $footer-height;
+
 $border: 2px solid var(--bg-blue);
 $showHideBtnRadius: 25px;
 $showHideBtnHeight: 45px;
+
+$labelText-size: 23px;
+
+$noramlText-color: #ddf;
+$dimText-color: #aae;
+$darkText-color: #66a;
+
+strong {
+  font-weight: 600;
+}
+
+.test-borders {
+  border: solid orange;
+}
+
+.test-borders * {
+  border: solid orange;
+}
+
+.blank-space {
+  width: 100%;
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
+.separator-line {
+  width: 100%;
+  border-color: $dimText-color;
+  margin: 10px 0px;
+}
+
+// .separator_line {
+//   margin-top: 10px;
+//   height: 1px;
+//   background-color: $dimText-color;
+//   // background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from($dimText-color), to(#fff0));
+// }
 
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
+  // bottom: $footerPosBtm;
   width: 100%;
-  height: $footerHeight;
+  // height: $footer-height;
   background-color: #fff0;
   // text-align: center;
 }
 
 .bodyRow {
-  height: $footerHeight;
+  display: flex;
+
+  // height: $footer-height;
   // border-top: $border;
+  padding: 0px 0px;
+
   background-color: var(--bg-blue);
 }
 
 .showHideBtn {
   position: relative;
   top: -$showHideBtnHeight;
-  width: $showHideBtnRadius*2;
+  width: $showHideBtnRadius * 2;
   height: $showHideBtnHeight;
+
+  margin: 0px 15px;
 
   font-size: $showHideBtnRadius;
   text-align: center;
@@ -38,4 +87,76 @@ $showHideBtnHeight: 45px;
   border-top: 2px solid var(--bg-blue);
 
   cursor: pointer;
+}
+
+.row-1 {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0px 5px;
+
+  font-size: $labelText-size;
+  color: $dimText-color;
+}
+
+.row-1-value {
+  color: $noramlText-color;
+}
+
+.row-2 {
+  display: flex;
+  flex-direction: row-reverse;
+
+  padding: 10px 5px;
+
+  font-size: $labelText-size;
+  color: $dimText-color;
+}
+
+.row-2-form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  max-width: 300px;
+}
+
+.row-2 label {
+  margin-right: 5px;
+}
+
+.row-2 input {
+  color: grey;
+  font-size: $labelText-size;
+  text-align: right;
+}
+
+.row-3 {
+  display: flex;
+  flex-direction: row-reverse;
+
+  padding: 0px 5px;
+
+  font-size: $labelText-size + 10;
+  color: $dimText-color;
+}
+
+.row-3-value {
+  color: $noramlText-color;
+}
+
+.row-4 {
+  display: flex;
+  justify-content: space-evenly;
+
+  padding: 25px 0px;
+}
+
+.row-4-btn {
+  color: $darkText-color;
+  font-weight: 500;
+}
+
+.row-4-btn fa-icon {
+  font-size: 35px;
 }

@@ -22,7 +22,7 @@
       </div>
       <div class="contentRow">
         <div class="qty"><span *ngIf="!item.unit">Qty: </span><strong>{{item.quantity}}</strong> {{item.unit}}</div>
-        <div class="fPrice">$<strong>{{item.price}}</strong></div>
+        <div class="fPrice">$<strong>{{item.Total()}}</strong></div>
       </div>
     </div>
   </div>

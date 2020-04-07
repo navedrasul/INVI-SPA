@@ -9,7 +9,10 @@
     *ngFor="let i of [1,2,3,4,5]"
   >{{i}}</div> -->
 
-  <div class="ilRow addRow">
+  <div
+    class="ilRow addRow"
+    (click)="addItem()"
+  >
     <!-- <div> -->
     <fa-icon [icon]="faPlus"></fa-icon>
     <!-- </div> -->

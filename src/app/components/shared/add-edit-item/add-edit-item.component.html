@@ -1,0 +1,88 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{(item.id)?'Edit':'Add'}} Item</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="modalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngIf="item">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+          <label class="control-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="item.name"
+          />
+        </div>
+        <div class="col-md-6 col-sm-12 form-group">
+          <label class="control-label">Quantity</label>
+          <input
+            type="text"
+            class="form-control numeric-control"
+            [(ngModel)]="item.quantity"
+            (ngModelChange)="recalcTotals()"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-12 form-group">
+          <label class="control-label">Unit</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="item.unit"
+          />
+        </div>
+        <div class="col-md-6 col-sm-12 form-group">
+          <label class="control-label">Price</label>
+          <input
+            type="text"
+            class="form-control numeric-control"
+            [(ngModel)]="item.price"
+            (ngModelChange)="recalcTotals()"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 totalBeforeDiscount text-right">
+          Total Before Discount: $<strong>{{totalBeforeDiscount}}</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-6 col-sm-12 form-group">
+          <label class="control-label">Discount</label>
+          <input
+            type="text"
+            class="form-control numeric-control"
+            [(ngModel)]="item.discount"
+            (ngModelChange)="recalcTotals()"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 total text-right">
+          Total: $<strong>{{total}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-dark save-btn"
+    (click)="saveAndClose()"
+  >SAVE</button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="modalRef.hide()"
+  >CANCEL</button>
+</div>
