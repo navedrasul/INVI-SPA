@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Item } from 'src/app/models/Item';
+import { Item } from 'src/app/models/item';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { AddEditItemComponent } from '../../shared/add-edit-item/add-edit-item.component';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { AppEventsService } from 'src/app/services/app-events.service';
 
 @Component({
   selector: 'app-item-list',
@@ -16,26 +17,33 @@ export class ItemListComponent implements OnInit {
 
   items: Item[] = [];
   addEditModalRef: BsModalRef;
+  removeMode = false;
 
   constructor(
     private dataSvc: DataStorageService,
-    private modalSvc: BsModalService
+    private modalSvc: BsModalService,
+    private appEventsSvc: AppEventsService
   ) {
     this.items = dataSvc.getAllItems();
   }
 
   ngOnInit(): void {
-    const dataSvcObserver = {
-      next: res => {
-        this.items = res;
-      },
-      error: err => {
-        console.error('Error retrieving updated items: ', err);
-       },
-      finally: () => { }
-    };
+    this.subscribeToItemsChangeEvent();
+    this.subscribeRemoveModeChangeEvent();
+  }
 
-    this.dataSvc.itemsChange$.subscribe(dataSvcObserver);
+  subscribeToItemsChangeEvent() {
+    this.dataSvc.itemsChange$.subscribe(
+      res => this.items = res,
+      err => console.error('Error receiving itemsChange notif.: ', err)
+    );
+  }
+
+  subscribeRemoveModeChangeEvent() {
+    this.appEventsSvc.removeModeChange$.subscribe(
+      res => this.removeMode = res,
+      err => console.error('Error receiving removeModeChange notif.: ', err)
+    );
   }
 
   addItem() {
@@ -58,6 +66,11 @@ export class ItemListComponent implements OnInit {
       AddEditItemComponent,
       modalOpts
     );
+  }
+
+  removeItem(id: number) {
+    console.log(`Removing item (id: ${id})...`);
+    this.dataSvc.removeItem(id);
   }
 
 }

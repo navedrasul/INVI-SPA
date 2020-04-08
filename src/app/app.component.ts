@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataStorageService } from './services/data-storage.service';
-import { Item } from './models/Item';
+import { Item } from './models/item';
 
 @Component({
   selector: 'app-root',

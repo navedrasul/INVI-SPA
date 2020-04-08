@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/Item';
+import { Item } from '../models/item';
 import { Subject } from 'rxjs';
+import { AppState } from '../models/AppState';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class DataStorageService {
   private itemsLastId = 0;
 
   private discountKey: 'discount';
+
+  private appStateKey: 'appState';
 
   private itemsChangeSource = new Subject<Item[]>();
   itemsChange$ = this.itemsChangeSource.asObservable();
@@ -68,6 +71,11 @@ export class DataStorageService {
     this.Items = items;
   }
 
+  public removeAllItems() {
+    this.itemsLastId = 0;
+    this.Items = [];
+  }
+
   public addItem(item: Item) {
     // Set the item-id
     this.itemsLastId++;
@@ -87,44 +95,63 @@ export class DataStorageService {
   }
 
   public updateItem(item: Item) {
-    // Flag to avoid storing changes when item with the given id is not found.
-    let itemUpdated = false;
+    this.Items = this.Items.map(i => (i.id === item.id) ? item : i);
+  }
 
-    const updatedItems = this.Items.map(i => {
-      if (i.id === item.id) {
-        return item;
-        itemUpdated = true;
-      } else {
-        return i;
-      }
-    });
-
-    if (itemUpdated) {
-      this.Items = updatedItems;
-    }
+  public removeItem(id: number) {
+    this.Items = this.Items.filter(i => i.id !== id);
   }
 
 
   // Discount methods
 
   public get Discount(): number {
-    let Discount: number;
+    let discount: number;
     try {
       // Convert the localStorage string value into a number.
-      Discount = +localStorage.getItem(this.discountKey);
+      discount = +localStorage.getItem(this.discountKey);
     } catch (err) {
-      console.error('Error getting Discount from the localStorage: ', err);
+      console.error(`Error getting ${this.discountKey} from the localStorage: `, err);
     }
 
     // Replace falsey value (including NaN) to zero.
-    return Discount || 0;
+    return discount || 0;
   }
 
   public set Discount(v: number) {
     try {
       localStorage.setItem(this.discountKey, v.toString());
     } catch (err) {
-      console.error('Error saving Discount to the localStorage: ', err);
+      console.error(`Error saving '${this.discountKey}' to the localStorage: `, err);
+    }
+  }
+
+
+  // App-State methods
+
+  public get CurrAppState(): AppState {
+    let appState: AppState;
+    try {
+      // Convert the localStorage string value into AppState object.
+      appState = new AppState(JSON.parse(localStorage.getItem(this.appStateKey)));
+    } catch (err) {
+      console.error(`Error getting '${this.appStateKey}' from the localStorage: `, err);
+    }
+
+    // Replace falsey value with default AppState object.
+    return appState || new AppState();
+  }
+
+  public set CurrAppState(appState: AppState) {
+    if (!appState) {
+      // Set default AppState.
+      appState = new AppState();
+    }
+
+    try {
+      localStorage.setItem(this.appStateKey, JSON.stringify(appState));
+    } catch (err) {
+      console.error(`Error saving ${this.appStateKey} to the localStorage: `, err);
     }
   }
 
