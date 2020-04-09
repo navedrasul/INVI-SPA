@@ -50,7 +50,12 @@ export class FooterComponent implements OnInit {
     this.blankSpaceHeight = this.footerBody.nativeElement.offsetHeight;
 
     this.hidden = this.appStateSvc.FooterHidden;
+    this.updateFooterRowContainersDisplay();
+
     this.removeMode = this.appStateSvc.RemoveMode;
+
+    this.discount = this.dataSvc.Discount;
+    this.recalc_totalWithDiscount();
 
     // Listen to changes in the item-list.
     this.subscribeToItemsChangeEvent();
@@ -104,6 +109,8 @@ export class FooterComponent implements OnInit {
   }
 
   discount_change() {
+    this.dataSvc.Discount = this.discount;
+
     this.recalc_totalWithDiscount();
   }
 

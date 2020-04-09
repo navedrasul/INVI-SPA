@@ -11,9 +11,9 @@ export class DataStorageService {
   private itemsKey = 'items';
   private itemsLastId = 0;
 
-  private discountKey: 'discount';
+  private discountKey = 'discount';
 
-  private appStateKey: 'appState';
+  private appStateKey = 'appState';
 
   private itemsChangeSource = new Subject<Item[]>();
   itemsChange$ = this.itemsChangeSource.asObservable();
@@ -132,14 +132,23 @@ export class DataStorageService {
   public get CurrAppState(): AppState {
     let appState: AppState;
     try {
-      // Convert the localStorage string value into AppState object.
-      appState = new AppState(JSON.parse(localStorage.getItem(this.appStateKey)));
+      const appStateStr = localStorage.getItem(this.appStateKey);
+
+      if (appStateStr) {
+        // Convert the localStorage string value into AppState object.
+        appState = new AppState(JSON.parse(appStateStr));
+      }
     } catch (err) {
       console.error(`Error getting '${this.appStateKey}' from the localStorage: `, err);
     }
 
     // Replace falsey value with default AppState object.
-    return appState || new AppState();
+    if (!appState) {
+      appState = new AppState();
+      this.CurrAppState = appState;
+    }
+
+    return appState;
   }
 
   public set CurrAppState(appState: AppState) {
