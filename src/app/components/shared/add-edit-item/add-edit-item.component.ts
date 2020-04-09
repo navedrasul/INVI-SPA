@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Item } from 'src/app/models/Item';
+import { Item } from 'src/app/models/item';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 
 @Component({

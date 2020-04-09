@@ -14,6 +14,9 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { ItemListComponent } from './components/containers/item-list/item-list.component';
 import { ItemRowComponent } from './components/containers/item-list/item-row/item-row.component';
 import { AddEditItemComponent } from './components/shared/add-edit-item/add-edit-item.component';
+import { DataStorageService } from './services/data-storage.service';
+import { AppEventsService } from './services/app-events.service';
+import { AppStateService } from './services/app-state.service';
 
 @NgModule({
   declarations: [
@@ -23,22 +26,21 @@ import { AddEditItemComponent } from './components/shared/add-edit-item/add-edit
     FooterComponent,
     ItemListComponent,
     ItemRowComponent,
-    AddEditItemComponent
+    AddEditItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    DataStorageService,
+    AppEventsService,
+    AppStateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  // constructor(faLib: FaIconLibrary) {
-  //   faLib.addIcons(
-  //     faCoffee
-  //   );
-  // }
 }

@@ -14,9 +14,12 @@ $footerColor: $grey;
 $footerFontSize: 25px;
 $footerPadding: 10px 5px;
 
+$strong-color: #668;
+
 
 strong {
   font-weight: 700;
+  color: $strong-color;
 }
 
 

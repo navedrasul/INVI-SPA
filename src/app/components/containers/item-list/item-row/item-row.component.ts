@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faPen, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import { Item } from 'src/app/models/Item';
+import { Item } from 'src/app/models/item';
+import { AppEventsService } from 'src/app/services/app-events.service';
+import { AppStateService } from 'src/app/services/app-state.service';
 
 @Component({
   selector: 'app-item-row',
@@ -14,18 +16,41 @@ export class ItemRowComponent implements OnInit {
 
   @Input()
   item: Item = new Item();
-  // item: Item;
+
+  @Output()
+  edit = new EventEmitter<number>();
+
+  @Output()
+  remove = new EventEmitter<number>();
 
   removeMode = false;
 
-  constructor() {
-  }
+  constructor(
+    private appEventSvc: AppEventsService,
+    private appState: AppStateService
+  ) { }
 
   ngOnInit(): void {
+    this.removeMode = this.appState.RemoveMode;
+
+    const removeModeChangeObs = {
+      next: res => {
+        this.removeMode = res;
+      },
+      error: err => {
+        console.error('Error observing remove-mode change: ', err);
+      },
+    };
+
+    this.appEventSvc.removeModeChange$.subscribe(removeModeChangeObs);
   }
 
-  editItem(event: any) {
-    console.log(event);
+  editItem() {
+    this.edit.emit(this.item.id);
+  }
+
+  removeItem() {
+    this.remove.emit(this.item.id);
   }
 
 }

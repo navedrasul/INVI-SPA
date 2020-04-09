@@ -6,14 +6,14 @@
         <div class="editBtnContainer">
           <a
             class="editBtn"
-            (click)="editItem($event)"
+            (click)="editItem()"
             *ngIf="!removeMode"
           >
             <fa-icon [icon]="faPen"></fa-icon>
           </a>
           <a
             class="remBtn"
-            (click)="editItem($event)"
+            (click)="removeItem()"
             *ngIf="removeMode"
           >
             <fa-icon [icon]="faMinusCircle"></fa-icon>
@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="contentRow">
-        <div class="qty"><span *ngIf="!item.unit">Qty: </span><strong>{{item.quantity}}</strong> {{item.unit}}</div>
-        <div class="fPrice">$<strong>{{item.Total()}}</strong></div>
+        <div class="qty"><strong>{{item.quantity}} {{item.unit}}</strong> x&nbsp;<strong>${{item.price}}</strong><span *ngIf="item.discount"> -&nbsp;<strong>${{item.discount}}</strong></span></div>
+        <div class="fPrice"><strong>${{item.Total()}}</strong></div>
       </div>
     </div>
   </div>
