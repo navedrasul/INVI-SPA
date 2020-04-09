@@ -2,6 +2,8 @@
   <app-item-row
     *ngFor="let item of items"
     [item]="item"
+    (edit)="editItem($event)"
+    (remove)="removeItem($event)"
   ></app-item-row>
 
   <!-- <div
@@ -12,6 +14,7 @@
   <div
     class="ilRow addRow"
     (click)="addItem()"
+    *ngIf="!removeMode"
   >
     <!-- <div> -->
     <fa-icon [icon]="faPlus"></fa-icon>

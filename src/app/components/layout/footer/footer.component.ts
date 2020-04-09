@@ -2,6 +2,9 @@ import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '
 import { faChevronUp, faChevronDown, faPrint, faDownload, faShare } from '@fortawesome/free-solid-svg-icons';
 import { InviMath } from 'src/app/utils/invi-math';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { Item } from 'src/app/models/item';
+import { AppStateService } from 'src/app/services/app-state.service';
+import { AppEventsService } from 'src/app/services/app-events.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +13,7 @@ import { DataStorageService } from 'src/app/services/data-storage.service';
 })
 export class FooterComponent implements OnInit {
 
-  hidden = false;
+  hidden = true;
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
@@ -32,9 +35,12 @@ export class FooterComponent implements OnInit {
   total = 0;
   discount = 0;
   totalWithDiscount = 0;
+  removeMode = false;
 
   constructor(
-    private dataSvc: DataStorageService
+    private dataSvc: DataStorageService,
+    private appStateSvc: AppStateService,
+    private appEventsSvc: AppEventsService,
   ) {
     this.updateAllValues();
   }
@@ -42,12 +48,57 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.updateFooterRowContainersDisplay();
     this.blankSpaceHeight = this.footerBody.nativeElement.offsetHeight;
+
+    this.hidden = this.appStateSvc.FooterHidden;
+    this.updateFooterRowContainersDisplay();
+
+    this.removeMode = this.appStateSvc.RemoveMode;
+
+    this.discount = this.dataSvc.Discount;
+    this.recalc_totalWithDiscount();
+
+    // Listen to changes in the item-list.
+    this.subscribeToItemsChangeEvent();
+    this.subscribeFooterHiddenChangeEvent();
+    this.subscribeRemoveModeChangeEvent();
+  }
+  subscribeToItemsChangeEvent() {
+    this.dataSvc.itemsChange$.subscribe(
+      res => this.updateAllValues(res),
+      err => console.error('Error receiving itemsChange notif.: ', err)
+    );
   }
 
-  updateAllValues() {
-    const items = this.dataSvc.getAllItems();
+  subscribeFooterHiddenChangeEvent() {
+    this.appEventsSvc.footerHiddenChange$.subscribe(
+      res => {
+        this.hidden = res;
+        this.updateFooterRowContainersDisplay();
+      },
+      err => console.error('Error receiving footerHiddenChange notif.: ', err)
+    );
+  }
+
+  subscribeRemoveModeChangeEvent() {
+    this.appEventsSvc.removeModeChange$.subscribe(
+      res => {
+        this.removeMode = res;
+        if (this.removeMode && !this.hidden) {
+          this.appStateSvc.FooterHidden = true;
+        }
+      },
+      err => console.error('Error receiving removeModeChange notif.: ', err)
+    );
+  }
+
+  updateAllValues(items?: Item[]) {
+    if (!items) {
+      items = this.dataSvc.getAllItems();
+    }
 
     this.itemCount = items.length;
+
+    this.total = 0;
     items.forEach(i => this.total += i.Total());
 
     this.recalc_totalWithDiscount();
@@ -58,14 +109,20 @@ export class FooterComponent implements OnInit {
   }
 
   discount_change() {
+    this.dataSvc.Discount = this.discount;
+
     this.recalc_totalWithDiscount();
   }
 
-  showHideBtn_click(event: any) {
-    console.log(event);
-    this.hidden = !this.hidden;
+  showHideBtn_click() {
+    if (this.removeMode) {
+      return;
+    }
 
+    this.hidden = !this.hidden;
     this.updateFooterRowContainersDisplay();
+
+    this.appStateSvc.FooterHidden = this.hidden;
   }
 
   updateFooterRowContainersDisplay() {
