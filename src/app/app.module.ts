@@ -17,6 +17,7 @@ import { AddEditItemComponent } from './components/shared/add-edit-item/add-edit
 import { DataStorageService } from './services/data-storage.service';
 import { AppEventsService } from './services/app-events.service';
 import { AppStateService } from './services/app-state.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AppStateService } from './services/app-state.service';
     ItemListComponent,
     ItemRowComponent,
     AddEditItemComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
