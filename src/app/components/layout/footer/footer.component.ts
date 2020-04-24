@@ -62,6 +62,7 @@ export class FooterComponent implements OnInit {
     this.subscribeFooterHiddenChangeEvent();
     this.subscribeRemoveModeChangeEvent();
   }
+
   subscribeToItemsChangeEvent() {
     this.dataSvc.itemsChange$.subscribe(
       res => this.updateAllValues(res),
