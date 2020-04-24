@@ -18,6 +18,7 @@ import { DataStorageService } from './services/data-storage.service';
 import { AppEventsService } from './services/app-events.service';
 import { AppStateService } from './services/app-state.service';
 import { HomeComponent } from './home/home.component';
+import { InvoiceExportComponent } from './invoice-export/invoice-export.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HomeComponent } from './home/home.component';
     ItemRowComponent,
     AddEditItemComponent,
     HomeComponent,
+    InvoiceExportComponent,
   ],
   imports: [
     BrowserModule,
