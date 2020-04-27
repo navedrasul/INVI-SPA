@@ -20,10 +20,9 @@
         >
       </td>
     </tr>
-    <tr>
+    <tr *ngIf="invoiceDesc">
       <td colspan="2">
-        <p><strong>Description: </strong> This is a sample brief description about this invoice. This may contain any
-          text describing the purpose of the invoice, and the generator of this invoice, etc.</p>
+        <p><strong>Description: </strong> {{invoiceDesc}}</p>
       </td>
     </tr>
   </table>

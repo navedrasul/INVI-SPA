@@ -13,12 +13,14 @@ $total-font-size: 17px;
   position: absolute;
   left: -($exp-width + 2 * $exp-padding + 10px);
   top: 0px;
-  border: 1px dashed grey;
   padding: $exp-padding;
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: $exp-font-size;
   text-align: justify;
+
+  background-color: white;
+  // border: 1px dashed grey;
 }
 
 #divExport table {

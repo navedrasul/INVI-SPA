@@ -3,6 +3,7 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { DatePipe } from '@angular/common';
 import { DataStorageService } from '../services/data-storage.service';
 import { Item } from '../models/item';
+import { AppEventsService } from '../services/app-events.service';
 
 @Component({
   selector: 'app-invoice-export',
@@ -13,6 +14,8 @@ export class InvoiceExportComponent implements OnInit {
 
   @ViewChild('divExport', { static: true }) divExport: ElementRef;
   @ViewChild('dateText', { static: true }) dateText: ElementRef;
+
+  invoiceDesc = '';
 
   items: Item[];
 
@@ -30,16 +33,57 @@ export class InvoiceExportComponent implements OnInit {
 
   constructor(
     private dataSvc: DataStorageService,
-    private eaSvc: ExportAsService
+    private eaSvc: ExportAsService,
+    private appEventsSvc: AppEventsService
   ) { }
 
   ngOnInit(): void {
+    // Listen to app-events.
+    this.subscribeExportImageChangeEvent();
+    this.subscribeExportPdfChangeEvent();
+    this.subscribeExportExcelChangeEvent();
   }
+
+  subscribeExportImageChangeEvent() {
+    this.appEventsSvc.exportImageChange$.subscribe(
+      res => {
+        this.generateImage();
+      },
+      err => console.error('Error receiving exportImageChange notif.: ', err)
+    );
+  }
+
+  subscribeExportPdfChangeEvent() {
+    this.appEventsSvc.exportPdfChange$.subscribe(
+      res => {
+        this.generatePdf();
+      },
+      err => console.error('Error receiving exportPdfChange notif.: ', err)
+    );
+  }
+
+  subscribeExportExcelChangeEvent() {
+    this.appEventsSvc.exportExcelChange$.subscribe(
+      res => {
+        this.generateExcel();
+      },
+      err => console.error('Error receiving exportExcelChange notif.: ', err)
+    );
+  }
+
 
   public generateImage() {
     console.log('Generating the image...');
 
+    // Get the latest items.
+    this.items = this.dataSvc.getAllItems();
+    // TODO: Add some delay for the interface to update accroding to the updated items-array...
+    // ... Alternatively, explicitly / force update the items-list interface.
+
+    // Update the aggregate values.
     this.updateValues();
+
+    // Update the timestamp.
     this.updateTimeStamp();
 
     // download the file using old school javascript method
@@ -47,6 +91,19 @@ export class InvoiceExportComponent implements OnInit {
       // save started
     });
   }
+
+  generatePdf() {
+    console.log('Generating the PDF...');
+
+    // TODO: Implement!
+  }
+
+  generateExcel() {
+    console.log('Generating the Excel Workbook...');
+
+    // TODO: Implement!
+  }
+
 
   private updateValues() {
     console.log('Updating printable-invoice values...');
