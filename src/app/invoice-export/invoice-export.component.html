@@ -1,0 +1,74 @@
+<!-- div for exporting as PNG -->
+<div
+  id="divExport"
+  #divExport
+  class="divExport"
+>
+  <h2>INVOICE</h2>
+  <table>
+    <tr>
+      <td
+        colspan="2"
+        class="dateTextContainer"
+      >
+        <input
+          type="text"
+          #dateText
+          class="dateText"
+          tabIndex="-1"
+          readonly
+        >
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p><strong>Description: </strong> This is a sample brief description about this invoice. This may contain any
+          text describing the purpose of the invoice, and the generator of this invoice, etc.</p>
+      </td>
+    </tr>
+  </table>
+  <div class="container-fluid" *ngIf="!items">
+    <div class="row">
+      <div class="col-md-12 text-center">--- No Item ---</div>
+    </div>
+  </div>
+  <table class="itemsTable" *ngIf="items">
+    <tr class="itemTable-header-row">
+      <th class="item-col">Item</th>
+      <th class="price-col">Price</th>
+    </tr>
+    <tr class="itemTable-data-row" *ngFor="let item of items">
+      <td>
+        <div>
+          {{item.name}}
+        </div>
+        <div class="item-cell-footer">
+          <span class="qty">{{item.quantity}} {{item.unit}}</span> x
+          <span class="itemPrice">${{item.price}}</span>
+        </div>
+      </td>
+      <td class="itemTotal">${{item.Total()}}</td>
+    </tr>
+  </table>
+  <table class="totals-table">
+    <tr>
+      <td>
+        Total: <span class="totalWithoutDiscount">${{totalWithoutDiscount}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="discount-cell">
+        Discount: -&nbsp;<span class="discount">${{discount}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="total-cell">
+        Grand Total: <span class="total">${{total}}</span>
+      </td>
+    </tr>
+  </table>
+  <div class="creditsText">
+    powered by:
+    <span class="inviLogo">INVI</span>
+  </div>
+</div>

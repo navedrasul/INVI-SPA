@@ -1,0 +1,135 @@
+$exp-font-size: 12px;
+
+$exp-width: 300px;
+$exp-padding: 10px;
+
+$amount-font-weight: 700;
+
+$discount-font-size: 15px;
+$total-font-size: 17px;
+
+#divExport {
+  width: $exp-width;
+  position: absolute;
+  left: -($exp-width + 2 * $exp-padding + 10px);
+  top: 0px;
+  border: 1px dashed grey;
+  padding: $exp-padding;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: $exp-font-size;
+  text-align: justify;
+}
+
+#divExport table {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.inviLogo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-style: normal;
+}
+
+.creditsText {
+  font-size: 12px;
+  text-align: center;
+  font-style: italic;
+
+  margin: 45px 5px 5px 5px;
+}
+
+.dateTextContainer{
+  text-align: center;
+}
+
+.dateText {
+  font-weight: 700;
+  text-align: center;
+  border: none;
+}
+
+.itemsTable {
+  width: 100%;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.itemsTable td {
+  padding: 5px 5px 0px 5px;
+}
+
+.itemTable-header-row th {
+  border-bottom: 1px solid;
+}
+
+.itemTable-data-row td {
+  border-bottom: 1px dashed grey;
+}
+
+.item-col {
+  width: 75%;
+}
+
+.price-col {
+  width: 25%;
+}
+
+.item-cell-footer {
+  text-align: right;
+  padding-top: 5px;
+}
+
+.qty {
+  font-weight: $amount-font-weight;
+}
+
+.itemPrice {
+  font-weight: $amount-font-weight;
+}
+
+.itemDiscount {
+  font-weight: $amount-font-weight;
+}
+
+.itemTotal {
+  font-weight: $amount-font-weight;
+  text-align: right;
+}
+
+.totals-table {
+  width: 100%;
+}
+
+.totals-table td {
+  text-align: right;
+}
+
+.discount-cell {
+  font-size: $discount-font-size;
+}
+
+.total-cell {
+  font-size: $total-font-size;
+
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.totalWithoutDiscount {
+  font-weight: $amount-font-weight;
+}
+
+.discount {
+  font-weight: $amount-font-weight;
+}
+
+.total {
+  font-weight: $amount-font-weight;
+}
