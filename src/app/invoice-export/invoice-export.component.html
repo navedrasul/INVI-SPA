@@ -44,6 +44,10 @@
         <div class="item-cell-footer">
           <span class="qty">{{item.quantity}} {{item.unit}}</span> x
           <span class="itemPrice">${{item.price}}</span>
+          <span *ngIf="item.discount">
+            -
+            <span class="itemDiscount">${{item.discount}}</span>
+          </span>
         </div>
       </td>
       <td class="itemTotal">${{item.Total()}}</td>

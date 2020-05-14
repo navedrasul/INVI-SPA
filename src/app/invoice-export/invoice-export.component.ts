@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+// tslint:disable-next-line: max-line-length
+import {
+  Component, OnInit, ViewChild, ElementRef,
+  AfterViewChecked
+} from '@angular/core';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { DatePipe } from '@angular/common';
 import { DataStorageService } from '../services/data-storage.service';
@@ -10,7 +14,7 @@ import { AppEventsService } from '../services/app-events.service';
   templateUrl: './invoice-export.component.html',
   styleUrls: ['./invoice-export.component.scss']
 })
-export class InvoiceExportComponent implements OnInit {
+export class InvoiceExportComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('divExport', { static: true }) divExport: ElementRef;
   @ViewChild('dateText', { static: true }) dateText: ElementRef;
@@ -19,7 +23,6 @@ export class InvoiceExportComponent implements OnInit {
 
   items: Item[];
 
-  // TODO: Replace the following with ViewChilds.
   totalWithoutDiscount = 0;
   discount = 0;
   total = 0;
@@ -31,17 +34,31 @@ export class InvoiceExportComponent implements OnInit {
     elementIdOrContent: 'divExport'
   };
 
+  imgPrintflag = false;
+  pdfPrintflag = false;
+
   constructor(
     private dataSvc: DataStorageService,
     private eaSvc: ExportAsService,
     private appEventsSvc: AppEventsService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     // Listen to app-events.
     this.subscribeExportImageChangeEvent();
     this.subscribeExportPdfChangeEvent();
     this.subscribeExportExcelChangeEvent();
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.imgPrintflag) {
+      this.imgPrintflag = false;
+      // download the file using old school javascript method
+      this.eaSvc.save(this.eaCfg, 'Invoice').subscribe(() => {
+        // save started
+      });
+    }
   }
 
   subscribeExportImageChangeEvent() {
@@ -77,8 +94,6 @@ export class InvoiceExportComponent implements OnInit {
 
     // Get the latest items.
     this.items = this.dataSvc.getAllItems();
-    // TODO: Add some delay for the interface to update accroding to the updated items-array...
-    // ... Alternatively, explicitly / force update the items-list interface.
 
     // Update the aggregate values.
     this.updateValues();
@@ -86,10 +101,8 @@ export class InvoiceExportComponent implements OnInit {
     // Update the timestamp.
     this.updateTimeStamp();
 
-    // download the file using old school javascript method
-    this.eaSvc.save(this.eaCfg, 'Invoice').subscribe(() => {
-      // save started
-    });
+    // Set the flag to print the image when ngAfterViewChecked() will be called.
+    this.imgPrintflag = true;
   }
 
   generatePdf() {
