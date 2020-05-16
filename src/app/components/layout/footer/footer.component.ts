@@ -138,7 +138,7 @@ export class FooterComponent implements OnInit {
     console.log('Requesting invoice export image generation...');
     this.appEventsSvc.emitExportImageChange();
   }
-
+  
   genPDF() {
     console.log('Requesting invoice PDF generation...');
     this.appEventsSvc.emitExportPdfChange();
