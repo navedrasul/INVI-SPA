@@ -92,29 +92,29 @@
               <button
                 type="button"
                 class="btn btn-light row-4-btn"
-                (click)="share()"
+                (click)="genImage()"
               >
-                <fa-icon [icon]="faShare"></fa-icon>
+                <fa-icon [icon]="faImage"></fa-icon>
                 <br>
-                SHARE
+                Image
               </button>
               <button
                 type="button"
                 class="btn btn-light row-4-btn"
-                (click)="download()"
+                (click)="genPDF()"
               >
-                <fa-icon [icon]="faDownload"></fa-icon>
+                <fa-icon [icon]="faFilePdf"></fa-icon>
                 <br>
-                DOWNLOAD
+                PDF
               </button>
               <button
                 type="button"
                 class="btn btn-light row-4-btn"
-                (click)="print()"
+                (click)="genExcel()"
               >
-                <fa-icon [icon]="faPrint"></fa-icon>
+                <fa-icon [icon]="faFileExcel"></fa-icon>
                 <br>
-                PRINT
+                Excel
               </button>
             </div>
           </div>

@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { DataStorageService } from './data-storage.service';
-import { AppState } from '../models/AppState';
 import { AppEventsService } from './app-events.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStateService {
+
+  constructor(
+    private dataSvc: DataStorageService,
+    private appEventsSvc: AppEventsService
+  ) { }
+
 
   public get RemoveMode(): boolean {
     const appState = this.dataSvc.CurrAppState;
@@ -34,11 +39,5 @@ export class AppStateService {
 
     this.appEventsSvc.emitFooterHiddenChange(isOn);
   }
-
-
-  constructor(
-    private dataSvc: DataStorageService,
-    private appEventsSvc: AppEventsService
-  ) { }
 
 }
