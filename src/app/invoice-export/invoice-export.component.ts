@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { DataStorageService } from '../services/data-storage.service';
 import { Item } from '../models/item';
 import { AppEventsService } from '../services/app-events.service';
+import * as ihPrint from '../../assets/js/ink-html/invi-ink-html.js';
 
 @Component({
   selector: 'app-invoice-export',
@@ -54,10 +55,12 @@ export class InvoiceExportComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     if (this.imgPrintflag) {
       this.imgPrintflag = false;
-      // download the file using old school javascript method
       this.eaSvc.save(this.eaCfg, 'Invoice').subscribe(() => {
         // save started
       });
+    } else if (this.pdfPrintflag) {
+      this.pdfPrintflag = false;
+      ihPrint(this.divExport.nativeElement);
     }
   }
 
@@ -108,7 +111,17 @@ export class InvoiceExportComponent implements OnInit, AfterViewChecked {
   generatePdf() {
     console.log('Generating the PDF...');
 
-    // TODO: Implement!
+    // Get the latest items.
+    this.items = this.dataSvc.getAllItems();
+
+    // Update the aggregate values.
+    this.updateValues();
+
+    // Update the timestamp.
+    this.updateTimeStamp();
+
+    // Set the flag to print the image when ngAfterViewChecked() will be called.
+    this.pdfPrintflag = true;
   }
 
   generateExcel() {
