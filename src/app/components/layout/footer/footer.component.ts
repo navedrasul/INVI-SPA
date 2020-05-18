@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { faChevronUp, faChevronDown, faPrint, faDownload, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown, faFileExcel, faImage, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { InviMath } from 'src/app/utils/invi-math';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { Item } from 'src/app/models/item';
@@ -17,9 +17,9 @@ export class FooterComponent implements OnInit {
 
   faChevronUp = faChevronUp;
   faChevronDown = faChevronDown;
-  faPrint = faPrint;
-  faDownload = faDownload;
-  faShare = faShare;
+  faFileExcel = faFileExcel;
+  faImage = faImage;
+  faFilePdf = faFilePdf;
 
   @ViewChild('footer', { static: true }) footer: ElementRef;
   @ViewChild('footerBody', { static: true }) footerBody: ElementRef;
@@ -57,7 +57,7 @@ export class FooterComponent implements OnInit {
     this.discount = this.dataSvc.Discount;
     this.recalc_totalWithDiscount();
 
-    // Listen to changes in the item-list.
+    // Listen to app-events.
     this.subscribeToItemsChangeEvent();
     this.subscribeFooterHiddenChangeEvent();
     this.subscribeRemoveModeChangeEvent();
@@ -134,16 +134,19 @@ export class FooterComponent implements OnInit {
     this.divRow5Cntnr.nativeElement.style.display = displayVal;
   }
 
-  print() {
-    console.log('Printing the invoice...');
+  genImage() {
+    console.log('Requesting invoice export image generation...');
+    this.appEventsSvc.emitExportImageChange();
+  }
+  
+  genPDF() {
+    console.log('Requesting invoice PDF generation...');
+    this.appEventsSvc.emitExportPdfChange();
   }
 
-  download() {
-    console.log('Downloading the invoice...');
-  }
-
-  share() {
-    console.log('Sharing the invoice...');
+  genExcel() {
+    console.log('Requesting invoice Excel workbook generation...');
+    this.appEventsSvc.emitExportExcelChange();
   }
 
 }

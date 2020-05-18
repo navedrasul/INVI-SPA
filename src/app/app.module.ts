@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { ExportAsService } from 'ngx-export-as';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -42,7 +42,8 @@ import { InvoiceExportComponent } from './invoice-export/invoice-export.componen
   providers: [
     DataStorageService,
     AppEventsService,
-    AppStateService
+    AppStateService,
+    ExportAsService,
   ],
   bootstrap: [AppComponent]
 })
