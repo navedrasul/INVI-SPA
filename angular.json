@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "INVI-SPA"
+    }
+  },
+  "defaultProject": "INVI-SPA",
+  "cli": {
+    "analytics": false
+  }
 }
