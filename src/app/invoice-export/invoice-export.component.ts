@@ -137,9 +137,9 @@ export class InvoiceExportComponent implements OnInit, AfterViewChecked {
     this.items = this.dataSvc.getAllItems();
 
     // TODO: Replace the following with direct updates to the native-elements' values.
-    this.totalWithoutDiscount = this.dataSvc.TotalWithDiscount;
+    this.totalWithoutDiscount = this.dataSvc.ItemsTotal;
     this.discount = this.dataSvc.Discount;
-    this.total = this.dataSvc.Total;
+    this.total = this.dataSvc.TotalWithDiscount;
   }
 
   private updateTimeStamp() {
