@@ -13,6 +13,15 @@ export class AppEventsService {
   private footerHiddenChangeSource = new Subject<boolean>();
   footerHiddenChange$ = this.footerHiddenChangeSource.asObservable();
 
+  private exportImageChangeSource = new Subject<boolean>();
+  exportImageChange$ = this.exportImageChangeSource.asObservable();
+
+  private exportPdfChangeSource = new Subject<boolean>();
+  exportPdfChange$ = this.exportPdfChangeSource.asObservable();
+
+  private exportExcelChangeSource = new Subject<boolean>();
+  exportExcelChange$ = this.exportExcelChangeSource.asObservable();
+
   constructor() { }
 
   emitRemoveModeChange(isOn: boolean) {
@@ -21,6 +30,18 @@ export class AppEventsService {
 
   emitFooterHiddenChange(isHidden: boolean) {
     this.footerHiddenChangeSource.next(isHidden);
+  }
+
+  emitExportImageChange() {
+    this.exportImageChangeSource.next();
+  }
+
+  emitExportPdfChange() {
+    this.exportPdfChangeSource.next();
+  }
+
+  emitExportExcelChange() {
+    this.exportExcelChangeSource.next();
   }
 
 }
