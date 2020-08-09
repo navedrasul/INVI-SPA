@@ -2,6 +2,63 @@
   class="navbar sticky-top navbar-dark"
   style="background-color: var(--bg-blue);"
 >
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="toggleNavbar()"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="collapse navbar-collapse"
+    [ngClass]="{ 'show': navbarOpen }"
+  >
+    <ul class="navbar-nav ml-auto">
+      <li
+        class="nav-item dropdown"
+        appdropdown
+      >
+        <div>ABC</div>
+        <div>DEF</div>
+        <div>GHI</div>
+
+        <!-- <a
+          class="nav-link dropdown-toggle"
+          href=""
+          onclick="return false;"
+          id="navbarDropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <img
+            class="rounded-circle profile"
+            src="https://cdn.pixabay.com/photo/2016/06/17/09/53/hair-1462984_960_720.jpg"
+          >
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right avatar"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <div
+            class="sidebar-scroll"
+            id="list-group"
+          >
+            <a
+              class="dropdown-item chat"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{exact: true}"
+              [routerLink]="['/settings']"
+              href="#!"
+            >
+              <span class="d-xs-none username">Settings</span>
+            </a>
+          </div>
+        </div> -->
+      </li>
+    </ul>
+  </div>
+
   <a
     class="navbar-brand"
     href="#"
