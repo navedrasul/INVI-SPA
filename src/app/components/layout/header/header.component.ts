@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { AppStateService } from 'src/app/services/app-state.service';
@@ -15,9 +15,6 @@ export class HeaderComponent implements OnInit {
 
   removeMode = false;
 
-  navbarOpen = false;
-  public clicked = false;
-  _el: any;
 
   constructor(
     private appStateSvc: AppStateService,
@@ -29,23 +26,6 @@ export class HeaderComponent implements OnInit {
     this.removeMode = this.appStateSvc.RemoveMode;
 
     this.subscribeRemoveModeChangeEvent();
-  }
-
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
-
-  onClick(event): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.clicked = true;
-  }
-
-  @HostListener('document:click', ['event'])
-  private clickedOutside(event): void {
-    if (this.clicked) {
-      this._el.nativeElement.querySelector('.dropdown - menu').classList.toggle('show');
-    }
   }
 
   subscribeRemoveModeChangeEvent() {
