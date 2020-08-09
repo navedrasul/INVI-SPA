@@ -165,14 +165,14 @@ export class DataStorageService {
     }
   }
 
-  public get Total() {
+  public get ItemsTotal() {
     let total = 0;
     this.Items.forEach(i => total += i.Total());
     return total;
   }
 
   public get TotalWithDiscount() {
-    return InviMath.round(this.Total - this.Discount, 2);
+    return InviMath.round(this.ItemsTotal - this.Discount, 2);
   }
 
 }

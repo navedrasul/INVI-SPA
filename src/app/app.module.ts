@@ -19,6 +19,7 @@ import { AppEventsService } from './services/app-events.service';
 import { AppStateService } from './services/app-state.service';
 import { HomeComponent } from './home/home.component';
 import { InvoiceExportComponent } from './invoice-export/invoice-export.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { InvoiceExportComponent } from './invoice-export/invoice-export.componen
     AppEventsService,
     AppStateService,
     ExportAsService,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

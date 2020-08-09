@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   removeMode = false;
 
+
   constructor(
     private appStateSvc: AppStateService,
     private appEventsSvc: AppEventsService,
