@@ -20,7 +20,6 @@ import { AppStateService } from './services/app-state.service';
 import { HomeComponent } from './home/home.component';
 import { InvoiceExportComponent } from './invoice-export/invoice-export.component';
 import { DatePipe } from '@angular/common';
-import { ExcelExportService } from './services/excel-export.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,6 @@ import { ExcelExportService } from './services/excel-export.service';
     AppStateService,
     ExportAsService,
     DatePipe,
-    ExcelExportService,
   ],
   bootstrap: [AppComponent]
 })

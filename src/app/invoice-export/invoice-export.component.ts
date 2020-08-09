@@ -9,7 +9,6 @@ import { DataStorageService } from '../services/data-storage.service';
 import { Item } from '../models/item';
 import { AppEventsService } from '../services/app-events.service';
 import * as ihPrint from '../../assets/js/ink-html/invi-ink-html.js';
-import { ExcelExportService } from '../services/excel-export.service';
 
 @Component({
   selector: 'app-invoice-export',
@@ -42,8 +41,7 @@ export class InvoiceExportComponent implements OnInit, AfterViewChecked {
   constructor(
     private dataSvc: DataStorageService,
     private eaSvc: ExportAsService,
-    private appEventsSvc: AppEventsService,
-    private excelSvc: ExcelExportService
+    private appEventsSvc: AppEventsService
   ) {
   }
 
@@ -129,8 +127,7 @@ export class InvoiceExportComponent implements OnInit, AfterViewChecked {
   generateExcel() {
     console.log('Generating the Excel Workbook...');
 
-    // TODO: Complete the implement!
-    this.excelSvc.generateExcelFile();
+    // TODO: Implement!
   }
 
 
