@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { ExportAsService } from 'ngx-export-as';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -17,6 +17,9 @@ import { AddEditItemComponent } from './components/shared/add-edit-item/add-edit
 import { DataStorageService } from './services/data-storage.service';
 import { AppEventsService } from './services/app-events.service';
 import { AppStateService } from './services/app-state.service';
+import { HomeComponent } from './home/home.component';
+import { InvoiceExportComponent } from './invoice-export/invoice-export.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { AppStateService } from './services/app-state.service';
     ItemListComponent,
     ItemRowComponent,
     AddEditItemComponent,
+    HomeComponent,
+    InvoiceExportComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,9 @@ import { AppStateService } from './services/app-state.service';
   providers: [
     DataStorageService,
     AppEventsService,
-    AppStateService
+    AppStateService,
+    ExportAsService,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

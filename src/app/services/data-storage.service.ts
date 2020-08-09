@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Item } from '../models/item';
 import { Subject } from 'rxjs';
 import { AppState } from '../models/AppState';
+import { InviMath } from '../utils/invi-math';
 
 @Injectable({
   providedIn: 'root'
@@ -162,6 +163,16 @@ export class DataStorageService {
     } catch (err) {
       console.error(`Error saving ${this.appStateKey} to the localStorage: `, err);
     }
+  }
+
+  public get ItemsTotal() {
+    let total = 0;
+    this.Items.forEach(i => total += i.Total());
+    return total;
+  }
+
+  public get TotalWithDiscount() {
+    return InviMath.round(this.ItemsTotal - this.Discount, 2);
   }
 
 }
