@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Item } from 'src/app/models/item';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { InviJS } from 'src/app/utils/invi-js';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -41,5 +42,4 @@ export class AddEditItemComponent implements OnInit {
 
     this.modalRef.hide();
   }
-
 }

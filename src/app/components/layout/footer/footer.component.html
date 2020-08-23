@@ -36,6 +36,7 @@
           <div class="row">
             <div class="col-md-12 row-1">
               <span>Items: <strong class="row-1-value">{{itemCount}}</strong></span>
+              &nbsp;|&nbsp;
               <span class="text-right">Total: $<strong class="row-1-value">{{total}}</strong></span>
             </div>
           </div>
@@ -52,6 +53,7 @@
                   class="form-control"
                   [(ngModel)]="discount"
                   (ngModelChange)="discount_change()"
+                  (focus)="$event.target.select()"
                 />
               </div>
             </div>
