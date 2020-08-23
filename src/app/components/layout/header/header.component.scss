@@ -14,12 +14,16 @@ $raBtn-color: orangered;
 
 $backBtn-color: grey;
 
+.navbar-toggler {
+  padding-top: -5px;
+}
+
 .inviLogo {
   font-size: $logo-size;
   font-weight: $logo-weight;
   letter-spacing: $logo-letter-spacing;
 
-  padding: 0px 0px;
+  padding: 0px 15px;
 
   text-shadow: $logo-shadow;
 }

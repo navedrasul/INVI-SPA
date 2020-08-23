@@ -139,14 +139,14 @@ export class DataStorageService {
         // Convert the localStorage string value into AppState object.
         appState = new AppState(JSON.parse(appStateStr));
       }
+
+      // Replace falsey value with default AppState object.
+      if (!appState) {
+        appState = new AppState();
+        this.CurrAppState = appState;
+      }
     } catch (err) {
       console.error(`Error getting '${this.appStateKey}' from the localStorage: `, err);
-    }
-
-    // Replace falsey value with default AppState object.
-    if (!appState) {
-      appState = new AppState();
-      this.CurrAppState = appState;
     }
 
     return appState;
@@ -164,6 +164,9 @@ export class DataStorageService {
       console.error(`Error saving ${this.appStateKey} to the localStorage: `, err);
     }
   }
+
+
+  // Additional methods
 
   public get ItemsTotal() {
     let total = 0;

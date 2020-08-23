@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { AppStateService } from 'src/app/services/app-state.service';
@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
 
   changeRemoveMode(isOn: boolean) {
     this.removeMode = isOn;
-
     this.appStateSvc.RemoveMode = this.removeMode;
   }
 
@@ -50,4 +49,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  showMenu() {
+    this.appStateSvc.MenuVisible = true;
+  }
 }
