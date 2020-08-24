@@ -40,4 +40,18 @@ export class AppStateService {
     this.appEventsSvc.emitFooterHiddenChange(isOn);
   }
 
+
+  public get MenuVisible(): boolean {
+    const appState = this.dataSvc.CurrAppState;
+    return appState.menuVisible;
+  }
+
+  public set MenuVisible(isOn: boolean) {
+    const appState = this.dataSvc.CurrAppState;
+    appState.menuVisible = isOn;
+    this.dataSvc.CurrAppState = appState;
+
+    this.appEventsSvc.emitMenuVisibleChange(isOn);
+  }
+
 }

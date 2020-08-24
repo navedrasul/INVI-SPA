@@ -5,5 +5,10 @@ export class InviJS {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 
+  static nullifyFalsey(val: any): any {
+    val = (!val) ? null : val;
+    return val;
+  }
+
 }
 

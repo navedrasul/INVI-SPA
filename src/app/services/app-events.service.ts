@@ -13,6 +13,9 @@ export class AppEventsService {
   private footerHiddenChangeSource = new Subject<boolean>();
   footerHiddenChange$ = this.footerHiddenChangeSource.asObservable();
 
+  private menuVisibleChangeSource = new Subject<boolean>();
+  menuVisibleChange$ = this.menuVisibleChangeSource.asObservable();
+
   private exportImageChangeSource = new Subject<boolean>();
   exportImageChange$ = this.exportImageChangeSource.asObservable();
 
@@ -30,6 +33,10 @@ export class AppEventsService {
 
   emitFooterHiddenChange(isHidden: boolean) {
     this.footerHiddenChangeSource.next(isHidden);
+  }
+
+  emitMenuVisibleChange(isHidden: boolean) {
+    this.menuVisibleChangeSource.next(isHidden);
   }
 
   emitExportImageChange() {
