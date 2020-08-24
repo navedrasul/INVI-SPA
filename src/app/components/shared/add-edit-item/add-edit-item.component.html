@@ -19,6 +19,7 @@
             type="text"
             class="form-control"
             [(ngModel)]="item.name"
+            (focus)="$event.target.select()"
           />
         </div>
         <div class="col-md-6 col-sm-12 form-group">
@@ -28,6 +29,7 @@
             class="form-control numeric-control"
             [(ngModel)]="item.quantity"
             (ngModelChange)="recalcTotals()"
+            (focus)="$event.target.select()"
           />
         </div>
       </div>
@@ -38,6 +40,7 @@
             type="text"
             class="form-control"
             [(ngModel)]="item.unit"
+            (focus)="$event.target.select()"
           />
         </div>
         <div class="col-md-6 col-sm-12 form-group">
@@ -47,6 +50,7 @@
             class="form-control numeric-control"
             [(ngModel)]="item.price"
             (ngModelChange)="recalcTotals()"
+            (focus)="$event.target.select()"
           />
         </div>
       </div>
@@ -63,6 +67,7 @@
             class="form-control numeric-control"
             [(ngModel)]="item.discount"
             (ngModelChange)="recalcTotals()"
+            (focus)="$event.target.select()"
           />
         </div>
       </div>

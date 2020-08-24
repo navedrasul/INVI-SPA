@@ -1,0 +1,74 @@
+<div
+  class="modal-header"
+  style="background-color: var(--bg-blue);"
+>
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button
+    type="button"
+    class="close pull-right closeXBtn"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 opRow">
+        <div class="opRowCol1">
+          Currency Symbol
+        </div>
+        <div class="opRowCol2">
+          <input
+            type="text"
+            class="form-control csCtrl"
+            [(ngModel)]="currencySymbol"
+            (focus)="$event.target.select()"
+          >
+        </div>
+      </div>
+      <div class="col-md-12 opRow">
+        <div class="opRowCol1">
+          Print Title
+        </div>
+        <div class="opRowCol2">
+          <input
+            type="text"
+            class="form-control ptCtrl"
+            [(ngModel)]="printTitle"
+          >
+        </div>
+      </div>
+      <div class="col-md-12 opRow hCenter">
+        <button
+          type="button"
+          class="aboutBtn btn btn-primary"
+          style="background-color: var(--bg-blue);"
+        >About I N V I</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-footer"
+  style="background-color: var(--bg-blue);"
+>
+  <span>
+    <button
+      type="button"
+      class="footerCol1 btn btn-light"
+      (click)="openAboutDeveloper()"
+    >
+      <span class="footerTextRow1">Made by: Naved Rasul</span>
+      <span class="footerTextRow2">NavedRasul.com</span>
+    </button>
+  </span>
+  <span>
+    <button
+      type="button"
+      class="closeBtn btn btn-light"
+      (click)="bsModalRef.hide()"
+    >{{closeBtnName}}</button>
+  </span>
+</div>

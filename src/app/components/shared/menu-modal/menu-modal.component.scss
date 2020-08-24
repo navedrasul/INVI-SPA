@@ -1,0 +1,98 @@
+$lightText-color: white;
+$darkText-color: #66a;
+$grey: #999;
+
+$opRowHeight: 100px;
+
+// Header
+
+.modal-header {
+  color: $lightText-color;
+}
+
+.closeXBtn {
+  color: $lightText-color;
+}
+
+// Body
+
+.modal-body {
+  padding: 0px;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.opRow {
+  min-height: $opRowHeight;
+  background-color: white;
+  padding: 0px 10px;
+
+  // color: #333;
+  color: $grey;
+  font-size: x-large;
+  border-bottom: 1px solid lightgrey;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.csCtrl {
+  width: 75px;
+  text-align: center;
+  font-size: x-large;
+  color: $darkText-color;
+}
+
+.ptCtrl {
+  width: 200px;
+  text-align: center;
+  font-size: x-large;
+  color: $darkText-color;
+}
+
+.aboutBtn{
+  font-size: x-large;
+}
+
+
+// Footer
+
+.modal-footer {
+  height: $opRowHeight;
+  border-top: none;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerCol1 {
+  color: $darkText-color;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTextRow1 {
+  font-style: italic;
+}
+
+.footerTextRow2 {
+  letter-spacing: 3px;
+}
+
+.closeBtn {
+  color: $darkText-color;
+  font-size: x-large;
+}
+
+
+// Additional
+
+.hCenter{
+  display: flex;
+  justify-content: center;
+}
